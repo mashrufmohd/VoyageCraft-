@@ -1,0 +1,98 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 200 50% 3%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 50% 3%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 50% 3%;
+
+    --primary: 191 93% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 200 50% 3%;
+
+    --muted: 210 20% 92%;
+    --muted-foreground: 215 25% 40%;
+
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 191 93% 36%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 200 50% 3%;
+    --foreground: 210 20% 98%;
+
+    --card: 200 30% 7%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 200 30% 7%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 191 93% 36%; 
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 30% 10%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 200 30% 15%;
+    --muted-foreground: 215 25% 65%;
+
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 200 30% 15%;
+    --input: 200 30% 15%;
+    --ring: 191 93% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .section-padding {
+    @apply py-12 px-4 md:py-20 md:px-8 lg:px-12;
+  }
+  
+  .container-padding {
+    @apply px-4 md:px-8 lg:px-12;
+  }
+  
+  .input-field {
+    @apply w-full rounded-md border border-gray-200 px-4 py-3 text-sm focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-200;
+  }
+}
