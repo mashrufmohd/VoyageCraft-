@@ -1,8 +1,7 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
+	darkMode: ["class", '[data-theme="dark"]'], // Updated darkMode selector
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
@@ -19,7 +18,10 @@ export default {
 			}
 		},
 		extend: {
-			colors: {
+            fontFamily: { // Ensure sans is defined
+                sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
+            },
+			colors: { // Ensure all colors from index.css are mapped here
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -53,37 +55,29 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				// Keep custom colors if needed elsewhere
+                teal: { // Example custom color palette
+					DEFAULT: '#0d9488', // Adjusted primary shade
+					50: '#f0fdfa',
+					100: '#ccfbf1',
+					200: '#99f6e4',
+					300: '#5eead4',
+					400: '#2dd4bf',
+					500: '#14b8a6', // Main Teal shade (maps to primary)
+                    600: '#0d9488', // Darker Teal
+					700: '#0f766e',
+					800: '#115e59',
+					900: '#134e4a',
+                    950: '#042f2e', // Very dark teal
 				},
-				teal: {
-					DEFAULT: '#0891b2',
-					50: '#f0fdff',
-					100: '#cbf1f9',
-					200: '#98e1f0',
-					300: '#5ccae0',
-					400: '#2cb0c9',
-					500: '#0891b2',
-					600: '#0a768f',
-					700: '#0e5f74',
-					800: '#114f5e',
-					900: '#13414e',
-				},
-				coral: {
+				coral: { // Example custom color palette
 					DEFAULT: '#f97316',
 					50: '#fff7ed',
 					100: '#ffedd5',
 					200: '#fed7aa',
 					300: '#fdba74',
 					400: '#fb923c',
-					500: '#f97316',
+					500: '#f97316', // Main Coral shade
 					600: '#ea580c',
 					700: '#c2410c',
 					800: '#9a3412',
@@ -104,30 +98,47 @@ export default {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: '0' }
 				},
+                // Added animations
 				'fade-in': {
 					'0%': { opacity: '0', transform: 'translateY(10px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
+					'100%': { opacity: '1', transform: 'translateY(0)' },
 				},
-				'fade-out': {
-					'0%': { opacity: '1', transform: 'translateY(0)' },
-					'100%': { opacity: '0', transform: 'translateY(10px)' }
-				},
-				'slide-in': {
-					'0%': { transform: 'translateX(-100%)' },
-					'100%': { transform: 'translateX(0)' }
-				}
+                'slide-in-up': {
+                     '0%': { opacity: '0', transform: 'translateY(20px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                 'spin': { // Standard spin
+                    from: { transform: 'rotate(0deg)' },
+                    to: { transform: 'rotate(360deg)' },
+                 },
+                 // Shadcn/Radix animations (keep these)
+                "slide-down": {
+                  from: { height: "0" },
+                  to: { height: "var(--radix-collapsible-content-height)" },
+                },
+                "slide-up": {
+                  from: { height: "var(--radix-collapsible-content-height)" },
+                  to: { height: "0" },
+                },
+                "caret-blink": {
+                 "0%,70%,100%": { opacity: "1" },
+                 "20%,50%": { opacity: "0" },
+               },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.4s ease-out',
-				'fade-out': 'fade-out 0.4s ease-out',
-				'slide-in': 'slide-in 0.4s ease-out'
+                 // Added animations
+                'fade-in': 'fade-in 0.6s ease-out forwards',
+                'slide-in-up': 'slide-in-up 0.5s ease-out forwards',
+                'spin-slow': 'spin 3s linear infinite', // Example slow spin
+                 // Shadcn/Radix animations (keep these)
+                "slide-down": "slide-down 0.2s ease-out",
+                "slide-up": "slide-up 0.2s ease-out",
+                "caret-blink": "caret-blink 1.25s ease-out infinite",
 			},
-			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+

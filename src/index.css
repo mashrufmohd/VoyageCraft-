@@ -1,71 +1,91 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ... (keep existing styles) ... */
+
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 200 50% 3%;
+    --background: 0 0% 100%; /* Light mode background */
+    --foreground: 222.2 84% 4.9%; /* Light mode text */
 
     --card: 0 0% 100%;
-    --card-foreground: 200 50% 3%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 200 50% 3%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 191 93% 36%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 173 80% 40%; /* Teal primary */
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 200 50% 3%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 20% 92%;
-    --muted-foreground: 215 25% 40%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 210 40% 96.1%; /* Lighter accent for hover */
+    --accent-foreground: 173 80% 30%; /* Darker teal for accent text */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 191 93% 36%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 173 80% 40%; /* Teal ring */
 
-    --radius: 0.75rem;
+    --radius: 0.5rem; /* Slightly smaller radius */
+
+    /* Sidebar Colors */
+    --sidebar-background: 220 20% 98%;
+    --sidebar-foreground: 222.2 84% 4.9%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 173 80% 40%;
+    --sidebar-accent: 210 40% 96.1%;
+    --sidebar-accent-foreground: 173 80% 30%;
+    --sidebar-primary: 173 80% 40%;
+    --sidebar-primary-foreground: 210 40% 98%;
+
   }
 
   .dark {
-    --background: 200 50% 3%;
-    --foreground: 210 20% 98%;
+    --background: 222.2 84% 4.9%; /* Dark mode background */
+    --foreground: 210 40% 98%; /* Dark mode text */
 
-    --card: 200 30% 7%;
-    --card-foreground: 210 20% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 200 30% 7%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 191 93% 36%; 
-    --primary-foreground: 0 0% 100%;
+    --primary: 173 70% 50%; /* Adjusted Teal primary for dark */
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 200 30% 10%;
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 200 30% 15%;
-    --muted-foreground: 215 25% 65%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 217.2 32.6% 17.5%; /* Darker accent for hover */
+    --accent-foreground: 173 70% 60%; /* Lighter teal for accent text */
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 200 30% 15%;
-    --input: 200 30% 15%;
-    --ring: 191 93% 36%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 173 70% 50%; /* Adjusted Teal ring for dark */
+
+     /* Sidebar Colors Dark */
+    --sidebar-background: 222.2 80% 6.9%; /* Darker sidebar */
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 173 70% 50%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 173 70% 60%;
+    --sidebar-primary: 173 70% 50%;
+    --sidebar-primary-foreground: 222.2 47.4% 11.2%;
   }
 }
 
@@ -75,24 +95,64 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
+     /* Smooth scrolling */
+     scroll-behavior: smooth;
   }
 }
 
+@layer utilities {
+  /* Add custom animations */
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+  .animate-slide-in-up {
+     animation: slide-in-up 0.5s ease-out forwards;
+  }
+   .animate-spin-slow {
+    animation: spin 3s linear infinite;
+  }
+
+  /* Add animation delay utilities */
+  .animation-delay-200 { animation-delay: 0.2s; opacity: 0; }
+  .animation-delay-400 { animation-delay: 0.4s; opacity: 0; }
+  .animation-delay-600 { animation-delay: 0.6s; opacity: 0; }
+  .animation-delay-800 { animation-delay: 0.8s; opacity: 0; }
+
+
+  /* Define keyframes if not already present in tailwind.config.ts */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+   @keyframes slide-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+    @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+}
+
+
 @layer components {
+  /* Existing component styles */
   .card-hover {
     @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
-  
+
   .section-padding {
-    @apply py-12 px-4 md:py-20 md:px-8 lg:px-12;
+    @apply py-16 px-4 sm:px-6 lg:py-24 lg:px-8; /* Increased padding */
   }
-  
+
   .container-padding {
-    @apply px-4 md:px-8 lg:px-12;
+      /* Kept simpler for general use within sections */
+     @apply px-4 sm:px-6 lg:px-8;
   }
-  
-  .input-field {
-    @apply w-full rounded-md border border-gray-200 px-4 py-3 text-sm focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-200;
+
+  .input-field { /* Kept for potential direct use, but prefer Shadcn Input */
+    @apply w-full rounded-md border border-input bg-background px-4 py-3 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
   }
 }
+
